@@ -7,7 +7,6 @@ package guidemoproject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,10 +15,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 
 /**
@@ -62,9 +58,6 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML    
     private Label RadioButtonLabel;
-    //Variables for TextArea and ListView 
-    @FXML private ListView ListView;
-    @FXML private TextArea textArea;
     
     /**
      *Code for ComboBox Object
@@ -131,24 +124,8 @@ public class FXMLDocumentController implements Initializable {
         comboBox.getItems().add("Engineering Maths");
         comboBox.getItems().addAll("Java","CAD","C language");
         
-        //Configuring the items for ListView and TextArea
-        
-        ListView.getItems().addAll("Java","C#","C++","JavaScript","Android","Go","Pascal","Arduino");
-        ListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        
       
-    } 
-//Method for Adding items from Listview to TextArea;  
-    public void AddItimesButtonPushed(){
-        String TextAreaString = " ";
-       //Getting Items since they are in a kind of array
-       ObservableList ListOfItems  = ListView.getSelectionModel().getSelectedItems();
-       for(Object Items:ListOfItems){
-           
-           TextAreaString += String.format("%s%n",(String)Items);
-       }
-       this.textArea.setText(TextAreaString);
-    }
+    }    
     //Method for Checked Radio  BUTTON
     public void GetCheckedRadio(){
         getCheckedRadioButtonToggle = new ToggleGroup();
