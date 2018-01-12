@@ -5,12 +5,17 @@
  */
 package guidemoproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -21,6 +26,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 /**
  *
@@ -136,8 +142,9 @@ public class FXMLDocumentController implements Initializable {
         ListView.getItems().addAll("Java","C#","C++","JavaScript","Android","Go","Pascal","Arduino");
         ListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         
+        RadioButtonLabel.setText("");
       
-    } 
+    }
 //Method for Adding items from Listview to TextArea;  
     public void AddItimesButtonPushed(){
         String TextAreaString = " ";
@@ -150,13 +157,14 @@ public class FXMLDocumentController implements Initializable {
        this.textArea.setText(TextAreaString);
     }
     //Method for Checked Radio  BUTTON
+    
     public void GetCheckedRadio(){
         getCheckedRadioButtonToggle = new ToggleGroup();
         Php.setToggleGroup(getCheckedRadioButtonToggle);
         Java.setToggleGroup(getCheckedRadioButtonToggle);
         CSharp.setToggleGroup(getCheckedRadioButtonToggle);
         Go.setToggleGroup(getCheckedRadioButtonToggle);
-        RadioButtonLabel.setText("");
+        
        
         if(this.getCheckedRadioButtonToggle.getSelectedToggle().equals(this.Php)){
             RadioButtonLabel.setText("You Selected Php");
@@ -171,7 +179,19 @@ public class FXMLDocumentController implements Initializable {
          if(this.getCheckedRadioButtonToggle.getSelectedToggle().equals(this.Go)){
             RadioButtonLabel.setText("You Selected GO ");
         }
+       
+    }
+    //ChangeSceneButtonPushed
+    public void ChangeSceneButtonPushed(ActionEvent action) throws IOException{
+        Parent TableviewScene = FXMLLoader.load(getClass().getResource("TableViewExample.fxml"));
+         Scene scene = new Scene(TableviewScene);
+        
+         //This sets the stage 
+        Stage window =(Stage) ((Node)action.getSource()).getScene().getWindow();
+         
+        window.setScene(scene);
+        window.show();
         
     }
-    
 }
+ 
